@@ -1,0 +1,72 @@
+:root {
+  --bg: #f3f6f4; --surface: #ffffff; --text: #14231e; --muted: #5a6b64;
+  --line: #d5dfda; --accent: #0b6b57; --accent-ink: #ffffff; --skel: #e4ebe7;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1a16; --surface: #17251f; --text: #e8f1ed; --muted: #94a8a0;
+    --line: #28392f; --accent: #3fc3a1; --accent-ink: #062018; --skel: #1f3128;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 system-ui, "Segoe UI", Roboto, sans-serif; }
+main, .top, .foot { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.top { padding-top: 32px; padding-bottom: 8px; }
+h1 { margin: 0; font-size: clamp(1.8rem, 5vw, 2.6rem); letter-spacing: -0.02em; }
+h2, h3 { margin: 0 0 4px; }
+.muted { color: var(--muted); margin: 0; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; margin: 16px 0; }
+.field { display: flex; flex-direction: column; gap: 4px; font-size: .85rem; color: var(--muted); min-width: 150px; }
+.field.grow { flex: 1 1 240px; }
+input, select, .btn, .seg button {
+  font: inherit; color: var(--text); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px;
+}
+.btn { cursor: pointer; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.seg { display: flex; }
+.seg button { border-radius: 0; cursor: pointer; }
+.seg button:first-child { border-radius: 8px 0 0 8px; }
+.seg button:last-child { border-radius: 0 8px 8px 0; border-left: 0; }
+.seg .on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.stats div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.stats b { display: block; font-size: 1.25rem; overflow-wrap: anywhere; }
+.stats span { color: var(--muted); font-size: .85rem; }
+
+.grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.card img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; background: var(--skel); border-bottom: 1px solid var(--line); }
+.card .body { padding: 12px 14px 14px; }
+.card h3 { line-height: 1.3; }
+.description { color: var(--muted); font-size: .9rem; margin: 8px 0 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+dl { margin: 10px 0 0; display: grid; gap: 4px; }
+dl div { display: flex; justify-content: space-between; gap: 8px; font-size: .9rem; }
+dt { color: var(--muted); } dd { margin: 0; font-variant-numeric: tabular-nums; }
+.skeleton { height: 250px; background: var(--skel); animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .5; } }
+@media (prefers-reduced-motion: reduce) { .skeleton { animation: none; } }
+
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+table { width: 100%; border-collapse: collapse; min-width: 760px; }
+th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { color: var(--muted); font-weight: 600; font-size: .85rem; }
+td img { width: 48px; height: 40px; object-fit: contain; border-radius: 3px; display: block; background: var(--surface); }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.state { text-align: center; padding: 48px 16px; background: var(--surface); border: 1px dashed var(--line); border-radius: 12px; }
+.state .btn { margin-top: 14px; }
+.more { text-align: center; margin: 24px 0; }
+.foot { padding-top: 24px; padding-bottom: 32px; color: var(--muted); font-size: .85rem; }
+.foot a { color: var(--accent); }
+
+@media (max-width: 560px) {
+  .field, .field.grow { flex: 1 1 100%; }
+  .controls .btn, .seg { flex: 1 1 auto; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+}
